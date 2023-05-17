@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('First step') {
             steps {
-                sh 'ssh root@fedora-test \'hostname\''
+                sh 'ssh root@192.168.122.124 \'hostname\''
             }
         }
     }
