@@ -13,10 +13,10 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./public:/code/public
-  
+
   web:
     image: xwisert/jenkins-example:latest
-    command: sh -c "/code/run.sh"
+    command: bash -c "/code/run.sh"
     restart: always
     env_file:
       - .env
@@ -33,5 +33,6 @@ services:
       - ./postgresql/dumps:/code/dumps
       - ./postgresql/data:/var/lib/pgsql/data
     restart: always
-    ports:
-      - "${POSTGRES_PORT}:5432"
+    expose:
+      - 5432
+

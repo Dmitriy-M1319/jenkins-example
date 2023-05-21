@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'drf_yasg',
+    'drf_spectacular',
     'api'
 ]
 
@@ -83,6 +83,10 @@ DATABASES = {
         'HOST': os.getenv('POSTGRES_HOST'),
         'PORT': os.getenv('POSTGRES_PORT'),
     },
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': BASE_DIR / 'db.sqlite3',
+    #}
 }
 
 
@@ -112,7 +116,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'RichFamily',
 }
 
 # Internationalization
@@ -134,7 +143,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     # os.path.join(BASE_DIR, '..', "frontend", "src"),
 )
-STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'public', 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'public', 'media')
 MEDIA_URL = '/media/'
