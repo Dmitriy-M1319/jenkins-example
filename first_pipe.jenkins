@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('First step') {
             steps {
-                sshagent(credentials : ['tp-server']) {
+                sshagent('/home/dimonchik/.ssh/tp_server') {
                     sh 'ssh root@109.172.44.143 \'hostname\''
                 }
             }
