@@ -10,12 +10,16 @@ pipeline {
     stages {
         stage('First step') {
             steps {
-                sh 'ssh root@109.172.44.143 \'hostname\''
+                sshagent(credentials : ['tp-server']) {
+                    sh 'ssh root@109.172.44.143 \'hostname\''
+                }
             }
         }
         stage('Second step') {
             steps {
-                sh 'ssh root@109.172.44.143 \'uptime\''
+                sshagent(credentials : ['tp-server']) {
+                    sh 'ssh root@109.172.44.143 \'uptime\''
+                }
             }
         }
     }
